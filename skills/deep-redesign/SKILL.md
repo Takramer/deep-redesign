@@ -84,7 +84,7 @@ One install brings what the method leans on:
 | Playwright MCP server | Hands-on browsing while building and reviewing: screenshots at real viewports, page state, clicking through a flow | `.mcp.json` in the plugin, runs `npx @playwright/mcp` |
 | Playwright library | The eight scripts | `scripts/package.json` |
 
-Design-taste skills (motion, interface polish, visual critique) help in phase 4 if you have them, but they are not bundled: use whichever the project already trusts.
+Design skills for taste, motion, interface polish and critique help in phases 3 to 5 but aren't bundled. The README's "Skills that help" table lists the ones used before, with install commands. Use any that are installed; ask the owner before installing new ones.
 
 ## Templates
 

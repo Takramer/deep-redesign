@@ -69,6 +69,22 @@ BROWSER=webkit node ~/.claude/skills/deep-redesign/scripts/fallbacks.mjs http://
 - The Playwright MCP server, for browsing the site by hand while building and reviewing.
 - A `package.json` for the scripts, so Playwright installs in one place and the scripts run from any folder.
 
+## Skills that help (install separately)
+
+These aren't bundled, so the install stays small and each one keeps getting updates from its author. Each one helped during the rebuild this skill came from. Install the ones that fit your project; deep-redesign works without them.
+
+| Skill | Helps with | Phase | Install |
+|---|---|---|---|
+| [taste-skill](https://github.com/Leonxlnx/taste-skill) (`design-taste-frontend`) | Pushes layouts away from template defaults; sets variance, motion and density on purpose | 3, 4 | `npx skills add Leonxlnx/taste-skill --skill design-taste-frontend` |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) (`emil-design-eng`, `animate`, `review-animations`) | Interface polish and motion: whether to animate, which curve, how long, how it interrupts | 3, 4 | `npx skills add emilkowalski/skills` |
+| [make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better) | Small details: optical alignment, hit areas, hover states, nested corner radii | 4 | `npx skills add jakubkrehel/make-interfaces-feel-better` |
+| [impeccable](https://github.com/pbakaus/impeccable) | Design critique and polish commands, with a list of patterns to avoid | 4, 5 | `npx skills add pbakaus/impeccable` |
+| [juliobsz/skills](https://github.com/juliobsz/skills) (`awwwards`) | A high bar for award-level sites, useful as a reference when building options | 4 | `npx skills add juliobsz/skills` |
+| [Anthropic design plugin](https://github.com/anthropics/knowledge-work-plugins/tree/main/design) | Accessibility review, design critique, design-system audit | 5, 6 | `/plugin marketplace add anthropics/knowledge-work-plugins`, then `/plugin install design@knowledge-work-plugins` |
+| [Figma plugin](https://github.com/figma/mcp-server-guide) | Reading and editing Figma files when the design starts there | 4 | `/plugin install figma@claude-plugins-official` |
+
+Licenses: all MIT except impeccable and the Anthropic plugin (Apache 2.0). Read a skill's SKILL.md before installing it, because its instructions load into your agent.
+
 ## Install
 
 ### Claude Code, as a plugin
