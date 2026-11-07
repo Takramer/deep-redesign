@@ -1,0 +1,9 @@
+{
+  "name": "deep-redesign-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Playwright for the deep-redesign checks. Run once: npm install && npx playwright install",
+  "dependencies": {
+    "playwright": "^1.65.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "deep-redesign",
+  "version": "1.0.0",
+  "description": "Research-led website redesign: site intake, owner questions, multi-track research with sources, rules and gates, A/B review rounds, automated and simulated-reader testing, and SEO, AEO, accessibility, performance and live-parity audits.",
+  "author": { "name": "Thomas Kramer", "url": "https://github.com/Takramer" },
+  "homepage": "https://github.com/Takramer/deep-redesign",
+  "repository": "https://github.com/Takramer/deep-redesign",
+  "license": "MIT",
+  "keywords": ["redesign", "web design", "personas", "user research", "accessibility", "seo", "aeo", "playwright", "research", "testing"]
+}

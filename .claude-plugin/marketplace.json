@@ -1,0 +1,13 @@
+{
+  "name": "deep-redesign",
+  "owner": { "name": "Thomas Kramer", "url": "https://github.com/Takramer" },
+  "plugins": [
+    {
+      "name": "deep-redesign",
+      "source": "./",
+      "description": "Research-led website redesign, from site audit to live-site proof.",
+      "version": "1.0.0",
+      "license": "MIT"
+    }
+  ]
+}

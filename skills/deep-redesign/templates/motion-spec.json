@@ -1,0 +1,30 @@
+{
+  "comment": "One entry per moment. scripts/motion-trace.mjs reads this file. duration takes units, as CSS does: \"350ms\" or \".35s\". easing is a cubic-bezier, or linear. trigger is load, hover, click, focus or scroll. reducedMotion says what must happen when the reader asks for less motion: instant (lands in one frame) or fade (opacity only, under 150ms).",
+  "curve": "cubic-bezier(0.22, 1, 0.36, 1)",
+  "moments": [
+    {
+      "id": "hero-in",
+      "page": "/",
+      "selector": "main h1",
+      "property": "opacity",
+      "trigger": "load",
+      "duration": "350ms",
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "tolerance": 0.25,
+      "reducedMotion": "instant",
+      "why": "The first line comes into focus once, so the reader's eye lands on it."
+    },
+    {
+      "id": "card-hover",
+      "page": "/work",
+      "selector": "main a.card",
+      "property": "transform",
+      "trigger": "hover",
+      "duration": "200ms",
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "tolerance": 0.3,
+      "reducedMotion": "instant",
+      "why": "Shows which card the pointer is on without a color change."
+    }
+  ]
+}
