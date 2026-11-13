@@ -42,6 +42,7 @@ Eight Node scripts, built on Playwright. Each takes a URL (a local preview, a br
 | Script | What it checks |
 |---|---|
 | `widths.mjs` | No sideways scroll at 11 widths from 320 to 1920, scrolled top to bottom with real scrollbars; lines that must stay on one line |
+| `align.mjs` | Off-centre icons and labels, doubled borders, clipped text, overlaps and small tap targets at 390, 768 and 1440 |
 | `fallbacks.mjs` | Script off, reduced motion, 400% zoom |
 | `keyboard.mjs` | A Tab path through every page: names, visible focus, nothing hidden under a fixed bar, no trap |
 | `reader.mjs` | The tool simulated readers use: text, accessibility tree, headings, links, tab path, reflow, meta tags, screenshots |
