@@ -19,7 +19,7 @@ It also carries field notes: the traps that keep coming back in redesigns (wrong
 
 ## Readers are researched, not guessed
 
-The skill ships two agents. `persona-researcher` reads the site and the owner's answers, works out what kind of site it is and the one action it exists for, and picks the five people who matter: recruiters and hiring managers for a design portfolio, a budget holder and a hands-on evaluator for SaaS, a first-time buyer and a comparer for a shop, someone with an urgent need on a phone for a local business. It researches each persona on the web, with sources and with folklore figures marked, then writes a profile and a ready simulated-reader agent for each into your project (`.claude/agents/reader-<persona>.md`). One persona always reads with a screen reader and another at 200 to 400 percent zoom.
+The skill ships three agents. `persona-researcher` reads the site and the owner's answers, works out what kind of site it is and the one action it exists for, and picks the five people who matter: recruiters and hiring managers for a design portfolio, a budget holder and a hands-on evaluator for SaaS, a first-time buyer and a comparer for a shop, someone with an urgent need on a phone for a local business. It researches each persona on the web, with sources and with folklore figures marked, then writes a profile and a ready simulated-reader agent for each into your project (`.claude/agents/reader-<persona>.md`). One persona always reads with a screen reader and another at 200 to 400 percent zoom.
 
 Those five agents then read your site after every round, only through the reader tool and only by links they can see, and report Pass, Slow or Fail per task with the page text that decided it. `simulated-reader` is the generic version, for when you'd rather not add agents to the project.
 
@@ -48,6 +48,11 @@ Eight Node scripts, built on Playwright. Each takes a URL (a local preview, a br
 | `reader.mjs` | The tool simulated readers use: text, accessibility tree, headings, links, tab path, reflow, meta tags, screenshots |
 | `crawler-view.mjs` | What search, share-card, answer-engine and training crawlers each get, robots.txt per crawler, and CDN email rewrites |
 | `live-parity.mjs` | The live site against the build, byte for byte for scripts and styles, with host rewrites named |
+| `taste.mjs` | Not a gate: an inventory of each page's spacing, type, surfaces, colour and buttons, with a cross-page table that marks drift. Evidence for the taste reviewer |
+
+## The taste layer
+
+A page can pass every script above and still look unfinished: gaps that change from section to section, five type sizes where three would do, a footer that differs on every page, a tablet layout that is the phone layout stretched, or the stock look of generated sites (centred hero, three icon cards, one radius and one soft shadow on everything). `references/taste-rubric.md` turns those judgments into 35 rules drawn from real review corrections. Each rule says how to check it from a screenshot or the DOM, with a failing and a passing example. The `taste-reviewer` agent applies it: it screenshots every page at 390, 768 and 1440, compares the pages with each other, and returns PASS or a ranked list of defects with width, selector, numbers and rule ID. A project's own written design rules win over the rubric's defaults.
 | `dead-assets.mjs` | Files in the build nothing references, and their size |
 | `motion-trace.mjs` | One CSS value sampled every frame during a moment, checked against the motion spec, with and without reduced motion |
 
@@ -65,7 +70,7 @@ BROWSER=webkit node ~/.claude/skills/deep-redesign/scripts/fallbacks.mjs http://
 ## What one install brings
 
 - The `deep-redesign` skill: the method, the references, the templates and the eight scripts.
-- Two agents: `persona-researcher` and `simulated-reader`.
+- Three agents: `persona-researcher`, `simulated-reader` and `taste-reviewer`.
 - The `humanizer` skill by Siqi Chen ([blader/humanizer](https://github.com/blader/humanizer), MIT), for the copy pass and for plain reports. It can match the owner's voice from a sample of their writing.
 - The Playwright MCP server, for browsing the site by hand while building and reviewing.
 - A `package.json` for the scripts, so Playwright installs in one place and the scripts run from any folder.
@@ -132,12 +137,13 @@ The agent copies the templates into a working folder beside your site (`redesign
 ## What's in the folder
 
 ```
-agents/                 persona-researcher, simulated-reader
+agents/                 persona-researcher, simulated-reader, taste-reviewer
 skills/humanizer/       bundled copy pass (MIT, see its UPSTREAM.md)
 .mcp.json               Playwright MCP server
 skills/deep-redesign/
   SKILL.md              the method, the rules, the round loop
-  references/           one guide per phase, personas by site type, field notes, running it with agents
+  references/           one guide per phase, personas by site type, field notes, running it with agents,
+                        the taste rubric
   templates/            brief, research file, implications, ledger, motion spec,
                         test kit, reader profile, reader agent, round report, progress entry
   scripts/              the eight checks, a shared helper, package.json for Playwright
