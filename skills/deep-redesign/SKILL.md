@@ -34,7 +34,7 @@ These hold in every phase. They come from mistakes that actually happened.
 4. **Measure, don't assert.** "Faster" means a number before and after, on a throttled phone. "Accessible" means it passed script off, reduced motion, 400% zoom and a keyboard path, in three engines.
 5. **Rules the owner sets are permanent until the owner lifts them.** Record each with its date in `answers.md` under "Never again". Never re-add a rejected feature because a new source likes it.
 6. **The lazy ladder.** Before building anything: does it need to exist, does the codebase already have it, does the platform do it (CSS over JS), can it be one line. Only then write code. Climb the technique ladder only when the rung below fails: CSS, then a little script, then one small library, then the GPU.
-7. **The builder is not the judge.** Automated checks prove layout and fallbacks. Simulated readers find friction. Only real readers prove the site works. Say which kind of proof you have, in those words.
+7. **The builder is not the judge.** Automated checks prove layout and fallbacks. The `taste-reviewer` agent, run fresh with no builder notes, judges rhythm, hierarchy and consistency against the taste rubric. Simulated readers find friction. Only real readers prove the site works. Say which kind of proof you have, in those words.
 8. **Live is the truth.** The deployed site, not the local build, is what readers get. CDNs rewrite pages, caches hold old share cards, env vars differ. Check the live site after every deploy.
 
 ## The loop inside each round
@@ -44,6 +44,7 @@ read the handoff page and the last progress entry
   -> pick the items for this round from the plan (by ID)
   -> build each on its own review branch (A/B where a choice is open)
   -> run the gates (scripts/) in chromium, webkit, firefox
+  -> run the taste-reviewer agent on the pages touched; fix every block and fix item
   -> push branches for previews; record films or stills
   -> one report: what landed, links, check output, questions with their choices
   -> owner picks -> merge -> deploy -> check live parity
@@ -57,6 +58,7 @@ Each script takes a target first: a URL (local preview, branch preview, live sit
 | Script | What it checks |
 |---|---|
 | `scripts/widths.mjs` | No sideways scroll at 11 widths from 320 to 1920, scrolled top to bottom with real scrollbars; optional selectors that must hold one line; first-screen stills |
+| `scripts/taste.mjs` | Inventory, not a gate: section structure and edges, gaps, type combinations, line length, radii, shadows, borders, colour share, button styles, header and first-screen sizes, stock copy, and a cross-page table marking values that drift. Feeds the taste rubric; exits 0, or 2 when a page does not load |
 | `scripts/align.mjs` | Off-centre icons and labels in drawn controls, doubled borders, clipped text, overlapping text, tap targets under 24 px, at 390, 768 and 1440; `--shots` outlines each finding in red |
 | `scripts/fallbacks.mjs` | Script off, reduced motion (nothing still moving after 2 s), 400% zoom (a 320 by 200 view); no image left hidden by a reveal that waits for script |
 | `scripts/keyboard.mjs` | Tab through each page: every stop has a name, a visible focus ring and is on screen; no focus trap |
@@ -72,6 +74,7 @@ Each script takes a target first: a URL (local preview, branch preview, live sit
 |---|---|
 | `persona-researcher` | Names the site type and its one action, picks five fitting personas, researches each with sources, writes `personas/<slug>.md` and a ready agent at `.claude/agents/reader-<slug>.md` |
 | `simulated-reader` | Generic reader: give it a profile path and a URL; it reads the site as that persona and writes a report |
+| `taste-reviewer` | Judges finished pages against [references/taste-rubric.md](references/taste-rubric.md): rhythm, hierarchy, spacing and cross-page consistency, density, and the marks of generated output. Give it a target, the pages and the request in the owner's words; it returns PASS or defects with width, selector, numbers and rule ID |
 
 In the plugin they install with the skill. Installed by hand, copy `agents/` to `~/.claude/agents/`.
 
