@@ -58,7 +58,7 @@ Each script takes a target first: a URL (local preview, branch preview, live sit
 | Script | What it checks |
 |---|---|
 | `scripts/widths.mjs` | No sideways scroll at 11 widths from 320 to 1920, scrolled top to bottom with real scrollbars; optional selectors that must hold one line; first-screen stills |
-| `scripts/taste.mjs` | Inventory, not a gate: section structure and edges, gaps, type combinations, line length, radii, shadows, borders, colour share, button styles, header and first-screen sizes, stock copy, and a cross-page table marking values that drift. Feeds the taste rubric; always exits 0 |
+| `scripts/taste.mjs` | Inventory, not a gate: section structure and edges, gaps, type combinations, line length, radii, shadows, borders, colour share, button styles, header and first-screen sizes, stock copy, and a cross-page table marking values that drift. Feeds the taste rubric; exits 0, or 2 when a page does not load |
 | `scripts/align.mjs` | Off-centre icons and labels in drawn controls, doubled borders, clipped text, overlapping text, tap targets under 24 px, at 390, 768 and 1440; `--shots` outlines each finding in red |
 | `scripts/fallbacks.mjs` | Script off, reduced motion (nothing still moving after 2 s), 400% zoom (a 320 by 200 view); no image left hidden by a reveal that waits for script |
 | `scripts/keyboard.mjs` | Tab through each page: every stop has a name, a visible focus ring and is on screen; no focus trap |
